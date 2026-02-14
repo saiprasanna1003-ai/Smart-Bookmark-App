@@ -11,21 +11,9 @@ export default function Callback() {
 
   useEffect(() => {
     const handleAuth = async () => {
-      const { data: sessionData, error: sessionError } =
-        await supabase.auth.exchangeCodeForSession(window.location.href);
-
-      if (sessionError) {
-        console.error("OAuth Error:", sessionError.message);
-        router.push("/");
-        return;
-      }
-
-      const user = sessionData?.session?.user;
-
-      if (!user) {
-        router.push("/");
-        return;
-      }
+      const { data } = await supabase.auth.getUser();
+      const user = data.user;
+      if (!user) return;
 
       const { data: profile } = await supabase
         .from("profiles")
