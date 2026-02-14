@@ -8,7 +8,8 @@ export default function Home() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
+        // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
+        redirectTo: `https://smart-bookmark-f919af411-sai-prasanna-kanchis-projects.vercel.app/auth/callback?mode=signup`,
       },
     });
   };
@@ -17,7 +18,8 @@ export default function Home() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+        // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+        redirectTo: `https://smart-bookmark-f919af411-sai-prasanna-kanchis-projects.vercel.app/auth/callback?mode=login`,
       },
     });
   };
