@@ -8,7 +8,7 @@ export default function Home() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback?mode=signup",
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
       },
     });
   };
@@ -17,7 +17,7 @@ export default function Home() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback?mode=login",
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
       },
     });
   };
