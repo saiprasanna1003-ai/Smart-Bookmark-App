@@ -4,25 +4,47 @@ import { supabase } from "@/lib/supabase";
 
 export default function Home() {
 
+  // const signup = async () => {
+  //   await supabase.auth.signOut();
+  //   await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
+  //     },
+  //   });
+  // };
+  
   const signup = async () => {
-    await supabase.auth.signOut();
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
-      },
-    });
-  };
+  const redirectUrl = `${window.location.origin}/auth/callback?mode=signup`;
+  console.log("Redirect URL:", redirectUrl);
 
-  const login = async () => {
-    await supabase.auth.signOut();
+  await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: redirectUrl,
+    },
+  });
+};
+
+ const login = async () => {
+    const redirectUrl = `${window.location.origin}/auth/callback?mode=login`;
+  console.log("Redirect URL:", redirectUrl);
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+        redirectTo: redirectUrl,
       },
     });
   };
+  // const login = async () => {
+  //   await supabase.auth.signOut();
+  //   await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+  //     },
+  //   });
+  // };
 
   return (
     <div className="h-screen bg-white text-center">
