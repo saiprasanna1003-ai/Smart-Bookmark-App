@@ -15,11 +15,14 @@ export default function Home() {
   };
 
   const login = async () => {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+  console.log("SITE URL:", siteUrl);
     await supabase.auth.signOut();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+        redirectTo: `${siteUrl}/auth/callback?mode=login`,
       },
     });
   };
