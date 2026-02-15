@@ -11,16 +11,9 @@ export default function Callback() {
 
   useEffect(() => {
     const handleAuth = async () => {
-      const { data: sessionData, error: sessionError } =
-        await supabase.auth.exchangeCodeForSession(window.location.href);
-
-      if (sessionError) {
-        console.error("OAuth Error:", sessionError.message);
-        router.push("/");
-        return;
-      }
-
-      const user = sessionData?.session?.user;
+      // Let Supabase detect session automatically
+      const { data } = await supabase.auth.getSession();
+      const user = data.session?.user;
 
       if (!user) {
         router.push("/");
@@ -44,7 +37,6 @@ export default function Callback() {
             email: user.email,
           });
 
-          alert("Registration successful! You can now access dashboard.");
           router.push("/dashboard");
         }
       }
