@@ -18,7 +18,7 @@ export default function Home() {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
   console.log("SITE URL:", siteUrl);
-    await supabase.auth.signOut();
+    // await supabase.auth.signOut();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
