@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabase";
 export default function Home() {
 
   const signup = async () => {
-    // await supabase.auth.signOut();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -15,7 +14,6 @@ export default function Home() {
   };
 
   const login = async () => {
-    // await supabase.auth.signOut();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
