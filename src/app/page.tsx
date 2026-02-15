@@ -4,47 +4,27 @@ import { supabase } from "@/lib/supabase";
 
 export default function Home() {
 
-  // const signup = async () => {
-  //   await supabase.auth.signOut();
-  //   await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
-  //     },
-  //   });
-  // };
-  
   const signup = async () => {
-  const redirectUrl = `${window.location.origin}/auth/callback?mode=signup`;
-  console.log("Redirect URL:", redirectUrl);
-
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: redirectUrl,
-    },
-  });
-};
-
- const login = async () => {
-    const redirectUrl = `${window.location.origin}/auth/callback?mode=login`;
-  console.log("Redirect URL:", redirectUrl);
+    await supabase.auth.signOut();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: redirectUrl,
+        // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=signup`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       },
     });
   };
-  // const login = async () => {
-  //   await supabase.auth.signOut();
-  //   await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
-  //     },
-  //   });
-  // };
+
+  const login = async () => {
+    await supabase.auth.signOut();
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?mode=login`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      },
+    });
+  };
 
   return (
     <div className="h-screen bg-white text-center">
